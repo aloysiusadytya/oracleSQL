@@ -14,7 +14,17 @@ public class Employee {
     private int employee_id;
     private String first_name;
     private String last_name;
+    private int manager_id;
     
+    public Employee() {
+    }
+
+    public Employee(int employee_id, String first_name, String last_name) {
+        this.employee_id = employee_id;
+        this.first_name = first_name;
+        this.last_name = last_name;
+    }
+
 
     /**
      * @return the first_name
@@ -60,5 +70,13 @@ public class Employee {
      */
     public void setEmployee_id(int employee_id) {
         this.employee_id = employee_id;
+    }
+
+    public int getManager_id() {
+        return manager_id;
+    }
+
+    public void setManager_id(int manager_id) {
+        this.manager_id = manager_id;
     }
 }

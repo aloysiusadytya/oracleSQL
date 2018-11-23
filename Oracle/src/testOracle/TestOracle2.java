@@ -33,7 +33,7 @@ public class TestOracle2 {
                     "select E.employee_id, E.last_name, E.first_name "
                             + "from puspa.employees E" );
             while (rs.next()) {
-                System.out.println( //rs.getString(1) + "  " +
+                System.out.println(rs.getString(1) + "  " +
                         rs.getString(2)+ " "
                         + rs.getString(3));
             }
