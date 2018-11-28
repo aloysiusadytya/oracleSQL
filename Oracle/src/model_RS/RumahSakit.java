@@ -68,12 +68,16 @@ public class RumahSakit {
                 for (int i = 0; i < getDaftarDokter().size(); i++) {
                     Dokter temp = getDaftarDokter().get(i);
                     // buat query
-                    query = "INSERT INTO PUSPA.DOKTER (ID_DOKTER, NAMA) "
+                    query = "INSERT INTO DOKTER (ID_DOKTER, NAMA) "
                             + "VALUES ('" + temp.getIdDokter() + "','"
                             + temp.getNama() + "')";
                     // eksekusi query
-                    statement.execute(query);
-                    con.commit();
+                    try {
+                        statement.execute(query);
+                        con.commit();
+                    } catch (Exception ex) {
+                        System.out.println("Perintah insert gagal");
+                    }
                 }
             }
             // tutup koneksi
@@ -97,12 +101,12 @@ public class RumahSakit {
             Statement statement = con.createStatement();
             // buat query
             // SELECT id_dokter,nama from puspa.dokter 
-            String query = "SELECT id_dokter,nama from puspa.dokter";
+            String query = "SELECT id_dokter,nama from dokter";
             // kosongkan list 
             setDaftarDokter(new ArrayList<Dokter>());
             // jalankan/eksekusi queri
             ResultSet rs = statement.executeQuery(query);
-            while(rs.next()){
+            while (rs.next()) {
                 Dokter temp = new Dokter();
                 temp.setIdDokter(rs.getString("id_dokter"));
                 temp.setNama(rs.getString(2));
