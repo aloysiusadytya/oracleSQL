@@ -43,9 +43,9 @@ public class RumahSakit {
     public void tambahDokter(Dokter dokter) {
         getDaftarDokter().add(dokter);
     }
-    
-    public boolean isDokterExist(Dokter dokter){
-       boolean result=false; 
+
+    public boolean isDokterExist(Dokter dokter) {
+        boolean result = false;
         try {
             // buat kelas database
             MyOracle ora = new MyOracle("172.23.9.185", "1521", "orcl",
@@ -56,18 +56,22 @@ public class RumahSakit {
             Statement statement = con.createStatement();
             // buat query
             // SELECT id_dokter,nama from puspa.dokter 
-            String query = "SELECT id_dokter,nama from dokter where id_dokter ='"+dokter.getIdDokter()+"'";
+            String query = "SELECT id_dokter,nama from dokter where id_dokter ='" + dokter.getIdDokter() + "'";
             // jalankan/eksekusi queri
             ResultSet rs = statement.executeQuery(query);
             rs.next();
-            if(rs.isFirst()){
-                result=true;
+            if (rs.isFirst()) {
+                if (rs.getString("nama").equals(dokter.getNama())) {
+                    result = true;
+                } else {
+                    result = false;
+                }
             }
             con.close();
         } catch (SQLException ex) {
 //            Logger.getLogger(RumahSakit.class.getName()).log(Level.SEVERE, null, ex);
         }
-return result;
+        return result;
     }
 
     /**
