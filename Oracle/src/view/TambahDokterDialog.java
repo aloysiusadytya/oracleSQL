@@ -54,14 +54,14 @@ public class TambahDokterDialog extends JDialog{
         namaDokterLabel = new JLabel("Nama");
         namaDokterText = new JTextField();
         namaDokterLabel.setBounds(30, 40, 100, 30);
-        namaDokterText.setBounds(90,40, 100, 30);
+        namaDokterText.setBounds(90,40, 80, 30);
         add(namaDokterLabel);
         add(namaDokterText);
         
         idDokterLabel = new JLabel("ID Dokter");
         idDokterText = new JTextField();
         idDokterLabel.setBounds(30, 100, 100, 30);
-        idDokterText.setBounds(90, 100, 100, 30);
+        idDokterText.setBounds(90, 100, 80, 30);
         add(idDokterLabel);
         add(idDokterText);
         
