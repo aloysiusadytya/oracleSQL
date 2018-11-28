@@ -61,11 +61,11 @@ public class RumahSakit {
             ResultSet rs = statement.executeQuery(query);
             rs.next();
             if (rs.isFirst()) {
-                if (rs.getString("nama").equals(dokter.getNama())) {
+//                if (rs.getString("nama").equals(dokter.getNama())) {
                     result = true;
-                } else {
-                    result = false;
-                }
+//                } else {
+//                    result = false;
+//                }
             }
             con.close();
         } catch (SQLException ex) {
