@@ -81,6 +81,7 @@ public class MyDokterDialog extends JDialog {
      */
     public void refreshTabelDokter(){
         // update table model
+        table.setModel(new DokterTableModel(rs.getDaftarDokter()));
     }
 
 }
