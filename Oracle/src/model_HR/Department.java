@@ -40,11 +40,9 @@ public class Department {
      * Fungsi untuk membaca daftar/table employee lalu dipindahkan ke list daftar employees;
      */
     public void readEmployees() {
+        MyOracle ora = new MyOracle("172.23.9.185", "1521", "orcl", "MHS175314085", "MHS175314085");
+        Connection con = ora.getConnection();
         try {
-            // buat koneksi
-            MyOracle ora = new MyOracle("172.23.9.185", "1521", "orcl", "puspa", "puspa");
-            //step2 create  the connection object
-            Connection con = ora.getConnection();
             //step3 create the statement object
             Statement stmt = con.createStatement();
             //step4 execute query
@@ -66,25 +64,23 @@ public class Department {
      * Fungsi untuk membaca manager sebuah departemen
      */
     public void readManager(){
+        MyOracle ora = new MyOracle("172.23.9.185", "1521", "orcl", "MHS175314085", "MHS175314085");
+        Connection con = ora.getConnection();
         try {
-            // buat koneksi
-            MyOracle ora = new MyOracle("172.23.9.185", "1521", "orcl", "puspa", "puspa");
-            //step2 create  the connection object
-            Connection con = ora.getConnection();
-            //step3 create the statement object
             Statement stmt = con.createStatement();
-            //step4 execute query
-            String query = "select * from Employees where department_id="+getDeparment_ID()+"";
+            String query = "SELECT M.EMPLOYEE_ID, M.FIRST_NAME, M.LAST_NAME, E.MANAGER_ID FROM EMPLOYEES E"
+                    +" "+"JOIN EMPLOYEES M ON E.MANAGER_ID = M.EMPLOYEE_ID"
+                    +" "+ "WHERE E.DEPARTMENT_ID = " + getDeparment_ID();;
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                  Employee emp = new Employee(rs.getInt(1),rs.getString(2),rs.getString(3));
-                      listEmployees.add(emp);
-                  
+                Employee emp = new Employee(rs.getInt(1), rs.getString(2), rs.getString(3));
+                
+                    managers.add(emp);
+                
             }
-            //step5 close the connection object
             con.close();
         } catch (SQLException ex) {
-            Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Department.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     /**
